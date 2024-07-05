@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace - Discover Services</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Optional: Add your own custom styles here */
+    .card {
+      margin-bottom: 20px;
+      border: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card-footer {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Marketplace - Discover Services</h2>
+
+  <!-- Filter component -->
+  <div class="mb-3">
+    <label for="filterTitle">Filter by Title:</label>
+    <input type="text" class="form-control" id="filterTitle" placeholder="Enter title">
+  </div>
+
+  <div id="advertisements" class="row">
+    <!-- Dynamic advertisements will be inserted here -->
+  </div>
+</div>
+
+<!-- Bootstrap and jQuery (required for Bootstrap JS) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+// Sample data for advertisements
+const advertisementsData = [
+  { title: 'Ad 1', description: 'This is the first advertisement.', image: 'https://via.placeholder.com/150', contact: 'contact1@example.com' },
+  { title: 'Ad 2', description: 'This is the second advertisement.', image: 'https://via.placeholder.com/150', contact: 'contact2@example.com' },
+  { title: 'Ad 3', description: 'This is the third advertisement.', image: 'https://via.placeholder.com/150', contact: 'contact3@example.com' },
+  { title: 'Ad 4', description: 'This is the fourth advertisement.', image: 'https://via.placeholder.com/150', contact: 'contact4@example.com' },
+  { title: 'Ad 5', description: 'This is the fifth advertisement.', image: 'https://via.placeholder.com/150', contact: 'contact5@example.com' },
+  { title: 'Ad 6', description: 'This is the sixth advertisement.', image: 'https://via.placeholder.com/150', contact: 'contact6@example.com' }
+];
+
+// Function to create advertisement card
+function createAdvertisementCard(ad) {
+  return `
+    <div class="card mb-4 col-md-4">
+      <img class="card-img-top" src="${ad.image}" alt="${ad.title}">
+      <div class="card-body">
+        <h5 class="card-title">${ad.title}</h5>
+        <p class="card-text">${ad.description}</p>
+        <p class="card-text contact-info" data-contact="${ad.contact}">Contact: ***</p>
+      </div>
+      <div class="card-footer text-center">
+        <button class="btn btn-info btn-block btn-details">Details</button>
+        <button class="btn btn-secondary btn-block btn-toggle">Toggle Contact</button>
+      </div>
+    </div>
+  `;
+}
+
+// Function to render advertisements
+function renderAdvertisements(filterText = '') {
+  const advertisementsContainer = document.getElementById('advertisements');
+  advertisementsContainer.innerHTML = advertisementsData
+    .filter(ad => ad.title.toLowerCase().includes(filterText.toLowerCase()))
+    .map(createAdvertisementCard)
+    .join('');
+  attachEventListeners();
+}
+
+// Function to attach event listeners
+function attachEventListeners() {
+  document.querySelectorAll('.btn-details').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const contactInfo = e.target.closest('.card').querySelector('.contact-info').getAttribute('data-contact');
+      alert(`Contact: ${contactInfo}`);
+    });
+  });
+
+  document.querySelectorAll('.btn-toggle').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const contactInfoElem = e.target.closest('.card').querySelector('.contact-info');
+      const currentContact = contactInfoElem.innerHTML.includes('***') ? contactInfoElem.getAttribute('data-contact') : '***';
+      contactInfoElem.innerHTML = `Contact: ${currentContact}`;
+    });
+  });
+}
+
+// Event listener for filter input
+document.getElementById('filterTitle').addEventListener('input', (e) => {
+  renderAdvertisements(e.target.value);
+});
+
+// Initial render
+renderAdvertisements();
+
+</script>
+</body>
+</html>
