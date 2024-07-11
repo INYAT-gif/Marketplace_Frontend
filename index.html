@@ -11,16 +11,25 @@
       margin-bottom: 20px;
       border: none;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.05);
     }
     .card-footer {
       background-color: #f8f9fa;
+    }
+    .contact-info {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
 
 <div class="container mt-5">
-  <h2 class="mb-4">Marketplace - Discover Services</h2>
+  <h2 class="mb-4 text-center">Marketplace - Discover Services</h2>
 
   <!-- Filter component -->
   <div class="mb-3">
@@ -39,29 +48,31 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-// Sample data for advertisements
+// Sample data for advertisements with more realistic and diverse images
 const advertisementsData = [
-  { title: 'Plumbing Services', description: 'Expert plumbing services for all your needs.', image: 'https://via.placeholder.com/150', contact: 'plumber@example.com' },
-  { title: 'House Cleaning', description: 'Professional house cleaning services.', image: 'https://via.placeholder.com/150', contact: 'cleaning@example.com' },
-  { title: 'Electrician', description: 'Certified electrician for residential and commercial services.', image: 'https://via.placeholder.com/150', contact: 'electrician@example.com' },
-  { title: 'Gardening Services', description: 'Quality gardening and landscaping services.', image: 'https://via.placeholder.com/150', contact: 'gardener@example.com' },
-  { title: 'Tutoring', description: 'Private tutoring for various subjects.', image: 'https://via.placeholder.com/150', contact: 'tutor@example.com' },
-  { title: 'Pet Sitting', description: 'Reliable pet sitting services while you are away.', image: 'https://via.placeholder.com/150', contact: 'petsitting@example.com' }
+  { title: 'Plumbing Services', description: 'Expert plumbing services for all your needs.', image: 'https://via.placeholder.com/150/0000FF/808080?text=Plumbing', contact: 'plumber@example.com' },
+  { title: 'House Cleaning', description: 'Professional house cleaning services.', image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Cleaning', contact: 'cleaning@example.com' },
+  { title: 'Electrician', description: 'Certified electrician for residential and commercial services.', image: 'https://via.placeholder.com/150/FFFF00/000000?text=Electrician', contact: 'electrician@example.com' },
+  { title: 'Gardening Services', description: 'Quality gardening and landscaping services.', image: 'https://via.placeholder.com/150/008000/FFFFFF?text=Gardening', contact: 'gardener@example.com' },
+  { title: 'Tutoring', description: 'Private tutoring for various subjects.', image: 'https://via.placeholder.com/150/FFA500/FFFFFF?text=Tutoring', contact: 'tutor@example.com' },
+  { title: 'Pet Sitting', description: 'Reliable pet sitting services while you are away.', image: 'https://via.placeholder.com/150/800080/FFFFFF?text=Pet+Sitting', contact: 'petsitting@example.com' }
 ];
 
 // Function to create advertisement card
 function createAdvertisementCard(ad) {
   return `
-    <div class="card mb-4 col-md-4">
-      <img class="card-img-top" src="${ad.image}" alt="${ad.title}">
-      <div class="card-body">
-        <h5 class="card-title">${ad.title}</h5>
-        <p class="card-text">${ad.description}</p>
-        <p class="card-text contact-info" data-contact="${ad.contact}">Contact: ***</p>
-      </div>
-      <div class="card-footer text-center">
-        <button class="btn btn-info btn-block btn-details">Details</button>
-        <button class="btn btn-secondary btn-block btn-toggle">Toggle Contact</button>
+    <div class="col-md-6 col-lg-4 d-flex align-items-stretch">
+      <div class="card mb-4">
+        <img class="card-img-top" src="${ad.image}" alt="${ad.title}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">${ad.title}</h5>
+          <p class="card-text flex-grow-1">${ad.description}</p>
+          <p class="card-text contact-info" data-contact="${ad.contact}">Contact: ***</p>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-info btn-block btn-details">Details</button>
+          <button class="btn btn-secondary btn-block btn-toggle">Toggle Contact</button>
+        </div>
       </div>
     </div>
   `;
