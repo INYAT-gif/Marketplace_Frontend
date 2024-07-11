@@ -50,12 +50,60 @@
 <script>
 // Sample data for advertisements with more realistic and diverse images
 const advertisementsData = [
-  { title: 'Plumbing Services', description: 'Expert plumbing services for all your needs.', image: 'https://via.placeholder.com/150/0000FF/808080?text=Plumbing', contact: 'plumber@example.com' },
-  { title: 'House Cleaning', description: 'Professional house cleaning services.', image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Cleaning', contact: 'cleaning@example.com' },
-  { title: 'Electrician', description: 'Certified electrician for residential and commercial services.', image: 'https://via.placeholder.com/150/FFFF00/000000?text=Electrician', contact: 'electrician@example.com' },
-  { title: 'Gardening Services', description: 'Quality gardening and landscaping services.', image: 'https://via.placeholder.com/150/008000/FFFFFF?text=Gardening', contact: 'gardener@example.com' },
-  { title: 'Tutoring', description: 'Private tutoring for various subjects.', image: 'https://via.placeholder.com/150/FFA500/FFFFFF?text=Tutoring', contact: 'tutor@example.com' },
-  { title: 'Pet Sitting', description: 'Reliable pet sitting services while you are away.', image: 'https://via.placeholder.com/150/800080/FFFFFF?text=Pet+Sitting', contact: 'petsitting@example.com' }
+  {
+    title: 'Plumbing Services',
+    description: 'Expert plumbing services for all your needs.',
+    image: 'https://via.placeholder.com/150/0000FF/808080?text=Plumbing',
+    contact: 'plumber@example.com',
+    price: '$50/hour',
+    location: 'New York, NY',
+    rating: 4.5
+  },
+  {
+    title: 'House Cleaning',
+    description: 'Professional house cleaning services.',
+    image: 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Cleaning',
+    contact: 'cleaning@example.com',
+    price: '$30/hour',
+    location: 'Los Angeles, CA',
+    rating: 4.8
+  },
+  {
+    title: 'Electrician',
+    description: 'Certified electrician for residential and commercial services.',
+    image: 'https://via.placeholder.com/150/FFFF00/000000?text=Electrician',
+    contact: 'electrician@example.com',
+    price: '$60/hour',
+    location: 'Chicago, IL',
+    rating: 4.7
+  },
+  {
+    title: 'Gardening Services',
+    description: 'Quality gardening and landscaping services.',
+    image: 'https://via.placeholder.com/150/008000/FFFFFF?text=Gardening',
+    contact: 'gardener@example.com',
+    price: '$40/hour',
+    location: 'Houston, TX',
+    rating: 4.6
+  },
+  {
+    title: 'Tutoring',
+    description: 'Private tutoring for various subjects.',
+    image: 'https://via.placeholder.com/150/FFA500/FFFFFF?text=Tutoring',
+    contact: 'tutor@example.com',
+    price: '$20/hour',
+    location: 'Phoenix, AZ',
+    rating: 4.9
+  },
+  {
+    title: 'Pet Sitting',
+    description: 'Reliable pet sitting services while you are away.',
+    image: 'https://via.placeholder.com/150/800080/FFFFFF?text=Pet+Sitting',
+    contact: 'petsitting@example.com',
+    price: '$15/hour',
+    location: 'Philadelphia, PA',
+    rating: 4.3
+  }
 ];
 
 // Function to create advertisement card
@@ -67,6 +115,9 @@ function createAdvertisementCard(ad) {
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">${ad.title}</h5>
           <p class="card-text flex-grow-1">${ad.description}</p>
+          <p class="card-text"><strong>Price:</strong> ${ad.price}</p>
+          <p class="card-text"><strong>Location:</strong> ${ad.location}</p>
+          <p class="card-text"><strong>Rating:</strong> ${ad.rating} / 5</p>
           <p class="card-text contact-info" data-contact="${ad.contact}">Contact: ***</p>
         </div>
         <div class="card-footer text-center">
